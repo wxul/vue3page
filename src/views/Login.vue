@@ -4,7 +4,7 @@
         <div class="section section2"></div>
         <div
             class="section section3"
-            @click="toList"
+            @click="redirect('/list')"
         ></div>
     </div>
 </template>
@@ -15,13 +15,8 @@ import { useRouterTransition } from "@/hooks/router";
 export default {
     name: "Login",
     setup() {
-        const { router } = useRouterTransition({ name: "scale" });
-        return { router };
-    },
-    methods: {
-        toList() {
-            this.router.push("/list");
-        },
+        const { router, redirect } = useRouterTransition({ name: "scale" });
+        return { router, redirect };
     },
 };
 </script>
@@ -76,7 +71,7 @@ export default {
 
 .scale-in-enter-active.login .section,
 .scale-in-active.login .section {
-    transition-delay: 0.5s;
+    transition-delay: 0.4s;
 }
 
 .scale-in-enter-from.login,

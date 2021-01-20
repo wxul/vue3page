@@ -13,7 +13,11 @@ export function useRouterTransition(
     const router = useRouter();
 
     const route = useRoute();
-    route.meta.transition = `${name}-in`;
+    // route.meta.transition = `${name}-in`;
 
-    return { router };
+    const redirect = function(url: string) {
+        router.push(url);
+    };
+
+    return { router, route, redirect };
 }

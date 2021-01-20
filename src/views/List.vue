@@ -20,7 +20,7 @@
                 <div
                     class="section-item"
                     :class="{'section-active': id===1,'section-leave':id && id!==1}"
-                    @click="redirect(1)"
+                    @click="redirect(`/list/1`)"
                 >
                     <transition
                         name="fade"
@@ -33,7 +33,7 @@
                 <div
                     class="section-item"
                     :class="{'section-active': id===2,'section-leave':id && id!==2}"
-                    @click="redirect(2)"
+                    @click="redirect(`/list/2`)"
                 >
                     <transition
                         name="fade"
@@ -54,8 +54,9 @@
 
 <script lang="ts">
 import { ref } from "vue";
-import { useRouter, onBeforeRouteUpdate } from "vue-router";
+import { onBeforeRouteUpdate } from "vue-router";
 import Section2 from "@/components/Section2.vue";
+import { useRouterTransition } from "@/hooks/router";
 
 export default {
     components: {
@@ -69,14 +70,8 @@ export default {
             next();
         });
 
-        const router = useRouter();
-
-        return { router, id };
-    },
-    methods: {
-        redirect(id: number) {
-            this.router.push(`/list/${id}`);
-        },
+        const { router, redirect } = useRouterTransition({ name: "scale" });
+        return { router, id, redirect };
     },
 };
 </script>
@@ -165,6 +160,7 @@ export default {
 .section-item:nth-child(2).section-active {
     display: block;
     border: 0;
+    line-height: 160px;
 }
 
 .section-home .section-item.section-active {
