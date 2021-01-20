@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+    <div class="home">
+        <router-link to="/login">跳转URL</router-link>
+    </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { Options, Vue } from "vue-class-component";
 
-@Options({
-  components: {
-    HelloWorld,
-  },
-})
+@Options({})
 export default class Home extends Vue {}
 </script>
+
+<style>
+.home {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+</style>
